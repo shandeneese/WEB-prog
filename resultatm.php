@@ -48,42 +48,43 @@
     <div class="col-md-6">
 
       <?php
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          $balance = $_POST['balance'];
-          $amount = $_POST['amount'];
-          $type = $_POST['type'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $balance = $_POST['balance'];
+    $amount = $_POST['amount'];
+    $type = $_POST['type'];
 
-          echo "<div class='atm-result'>";
-          echo "<h3 class='text-center mb-3'>🏧 Transaction Result</h3>";
+    echo "<div class='atm-result'>";
+    echo "<h3 class='text-center mb-3'>🏧 Transaction Result</h3>";
 
-          if ($type == "deposit") {
-              $newBalance = $balance + $amount;
-              echo "<div class='atm-screen'>Deposit: ₱$amount</div>";
-              echo "<div class='atm-screen'>New Balance: ₱$newBalance</div>";
-              echo "<div class='alert alert-success'>✅ Deposit Successful!</div>";
-          }
-          else if ($type == "withdraw") {
-              if ($amount > $balance) {
-                  echo "<div class='atm-screen'>Requested: ₱$amount</div>";
-                  echo "<div class='atm-screen'>Current Balance: ₱$balance</div>";
-                  echo "<div class='alert alert-danger'>❌ Insufficient Balance!</div>";
-              } else {
-                  $newBalance = $balance - $amount;
-                  echo "<div class='atm-screen'>Withdrawn: ₱$amount</div>";
-                  echo "<div class='atm-screen'>New Balance: ₱$newBalance</div>";
-                  echo "<div class='alert alert-warning'>💵 Please take your cash.</div>";
-              }
-          }
-          else {
-              echo "<div class='alert alert-danger'>Invalid Transaction Type.</div>";
-          }
+    if ($type == "deposit") {
+        $newBalance = $balance + $amount;
+        echo "<div class='atm-screen'>Deposit: ₱$amount</div>";
+        echo "<div class='atm-screen'>New Balance: ₱$newBalance</div>";
+        echo "<div class='alert alert-success'>✅ Deposit Successful!</div>";
+    }
+    else if ($type == "withdraw") {
+        if ($amount > $balance) {
+            echo "<div class='atm-screen'>Requested: ₱$amount</div>";
+            echo "<div class='atm-screen'>Current Balance: ₱$balance</div>";
+            echo "<div class='alert alert-danger'>❌ Insufficient Balance!</div>";
+        } else {
+            $newBalance = $balance - $amount;
+            echo "<div class='atm-screen'>Withdrawn: ₱$amount</div>";
+            echo "<div class='atm-screen'>New Balance: ₱$newBalance</div>";
+            echo "<div class='alert alert-warning'>💵 Please take your cash.</div>";
+        }
+    }
+    else {
+        echo "<div class='alert alert-danger'>Invalid Transaction Type.</div>";
+    }
 
-          echo "<a href='atm.php' class='btn atm-btn w-100 mt-3'>🔙 Back to ATM</a>";
-          echo "</div>";
-      } else {
-          echo "<div class='alert alert-danger'>No data received.</div>";
-      }
-      ?>
+    echo "<a href='atm.php' class='btn atm-btn w-100 mt-3'>🔙 Back to ATM</a>";
+    echo "</div>";
+} else {
+    echo "<div class='alert alert-danger'>No data received.</div>";
+}
+?>
+
 
     </div>
   </div>
